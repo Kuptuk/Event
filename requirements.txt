@@ -13,3 +13,4 @@ idna
 pillow
 Cybernator
 aiohttp==3.7.3
+chardet==3.0.4
