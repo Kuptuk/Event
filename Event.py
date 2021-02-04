@@ -39,7 +39,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
   global k, date, mas, all_hearts, kitty, cost, bal_case, colors
-  id_channel_event = 791799591434584074
+  id_channel_event = 678657683246809152
   if message.channel.id == id_channel_event:
     k += 1
     temp = mas.get(str(message.content))
@@ -50,8 +50,8 @@ async def on_message(message):
       my_feb.update_one({"id":message.author.id}, {"$inc": {temp: 1, 'bal':int(bal_case.get(temp))}})
       await message.channel.send(embed=discord.Embed(colour=0xfc71d4, description=f'{all_hearts.get(temp)} {message.author.mention} успешно забрал сидечко {kitty[random.randint(1,19)]}\nТеперь его баланс пополнился на {cost.get(temp)} {kitty[random.randint(1,19)]}'))
       
-  if k >= 10 or str(datetime.datetime.utcnow()-date).split('.')[0]>='0:30:00':
-    if k >= 10:
+  if k >= 152 or str(datetime.datetime.utcnow()-date).split('.')[0]>='0:30:00':
+    if k >= 152:
       k = 0
     else:
       date = datetime.datetime.utcnow()
