@@ -6,8 +6,6 @@ discord.py==1.6.0
 websockets
 aiohttp==3.6.2
 typing-extensions
-idna==2.9
-chardet
 attrs
 yarl
 multidict
