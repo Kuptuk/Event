@@ -6,7 +6,7 @@ discord.py
 websockets
 aiohttp
 typing-extensions
-chardet
+chardet==2.0
 attrs
 yarl
 multidict
