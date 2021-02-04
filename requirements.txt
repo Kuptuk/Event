@@ -12,4 +12,4 @@ async-timeout
 idna
 pillow
 Cybernator
-aiohttp==3.5.4
+aiohttp==3.7.3
