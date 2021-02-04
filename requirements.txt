@@ -2,11 +2,12 @@ requests
 six
 pymongo
 dnspython
-discord.py
+discord.py==1.6.0
 websockets
-aiohttp
+aiohttp==3.6.2
 typing-extensions
-chardet==2.0
+idna
+chardet
 attrs
 yarl
 multidict
