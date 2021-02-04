@@ -9,9 +9,6 @@ import pymongo
 import random
 import math
 import inspect
-from Cybernator import Paginator
-from bs4 import BeautifulSoup as BS
-import xlsxwriter
 
 client = commands.Bot(command_prefix = 'K.', intents = discord.Intents.all())
 client.remove_command('help')
