@@ -49,8 +49,8 @@ async def on_message(message):
       my_feb.update_one({"id":message.author.id}, {"$inc": {temp: 1, 'bal':int(bal_case.get(temp))}})
       await message.channel.send(embed=discord.Embed(colour=0xfc71d4, description=f'{all_hearts.get(temp)} {message.author.mention} успешно забрал сидечко {kitty[random.randint(1,19)]}\nТеперь его баланс пополнился на {cost.get(temp)} {kitty[random.randint(1,19)]}'))
       
-  if k >= 152 or str(datetime.datetime.utcnow()-date).split('.')[0]>='0:30:00':
-    if k >= 152:
+  if k >= 10 or str(datetime.datetime.utcnow()-date).split('.')[0]>='0:30:00':
+    if k >= 10:
       k = 0
     else:
       date = datetime.datetime.utcnow()
