@@ -4,13 +4,14 @@ pymongo
 dnspython
 discord.py==1.6.0
 websockets
+aiohttp==3.6.2
 typing-extensions
+idna
+chardet
 attrs
 yarl
 multidict
 async-timeout
-idna==2.10
+idna
 pillow
 Cybernator
-aiohttp==3.7.3
-chardet==3.0.4
