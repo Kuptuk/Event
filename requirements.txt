@@ -9,7 +9,7 @@ attrs
 yarl
 multidict
 async-timeout
-idna==3.0
+idna==2.10
 pillow
 Cybernator
 aiohttp==3.7.3
