@@ -1,14 +1,15 @@
-import discord
+import discord 
 from discord.ext import commands
+from discord.utils import get
+import os
+import pymongo
+import inspect
+import random
+import datetime
 from PIL import Image, ImageFilter, ImageDraw, ImageFont
 import requests
 import io
-import asyncio
-import datetime
-import pymongo
-import random
-import math
-import inspect
+from Cybernator import Paginator
 
 client = commands.Bot(command_prefix = 'K.', intents = discord.Intents.all())
 client.remove_command('help')
