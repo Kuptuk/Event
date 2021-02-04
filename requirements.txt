@@ -6,7 +6,6 @@ discord.py
 websockets
 aiohttp
 typing-extensions
-idna==2.5
 chardet
 attrs
 yarl
