@@ -9,7 +9,6 @@ import datetime
 from PIL import Image, ImageFilter, ImageDraw, ImageFont
 import requests
 import io
-from Cybernator import Paginator
 
 client = commands.Bot(command_prefix = 'K.', intents = discord.Intents.all())
 client.remove_command('help')
