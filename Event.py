@@ -163,5 +163,33 @@ async def fal(message):
     idraw.text((0 , 0), f'{kapcha}', colors.get(flag), font = ImageFont.truetype(r'./Gothic.ttf', size = 50))
     response.save('14feb.png')
     await client.get_channel(id_channel_event).send(content=f'Появилось {all_hearts.get(flag)} сидечко, стоимостью {cost.get(flag)} <:KannaWave:630856439921115162>\nСкорее вводи капчу, чтобы забрать его первым <:whoop:758212790153642024>', file = discord.File(fp = '14feb.png'))
+  
+@client.command()
+async def norm(message):
+  global mas, id_channel_event
+  if message.author.id in admins:
+    rand = random.randint(1,100)
+    if rand<=5:
+      kapcha = random.randint(1000000,9999999)
+      flag = 'k'
+    elif rand>5 and rand<=20:
+      kapcha = random.randint(100000,999999)
+      flag = 'o'
+    elif rand>20 and rand<=40:
+      kapcha = random.randint(10000,99999)
+      flag = 'j'
+    elif rand>40 and rand<=65:
+      kapcha = random.randint(1000,9999)
+      flag = 'z'
+    elif rand>65:
+      kapcha = random.randint(100,999)
+      flag = 'g'
+    mas[f'{kapcha}'] = flag
+    response = Image.open(io.BytesIO(requests.get('https://media.discordapp.net/attachments/804450569736683580/804481836750471168/review.png', stream = True).content))
+    idraw = ImageDraw.Draw(response)
+    idraw.text((0 , 0), f'{kapcha}', colors.get(flag), font = ImageFont.truetype(r'./Gothic.ttf', size = 50))
+    response.save('14feb.png')
+    await client.get_channel(id_channel_event).send(content=f'Появилось {all_hearts.get(flag)} сидечко, стоимостью {cost.get(flag)} <:KannaWave:630856439921115162>\nСкорее вводи капчу, чтобы забрать его первым <:whoop:758212790153642024>', file = discord.File(fp = '14feb.png'))
+  await client.process_commands(message)
 
 client.run(tt)
