@@ -25,10 +25,10 @@ admins = [562561140786331650,414119169504575509,529044574660853761]
 
 @client.event
 async def on_ready():
-  global k, date, mas, all_hearts, kitty, cost, bal_case, colors
+  global k, date, mas, all_hearts, kitty, cost, bal_case, colors, masfal
   k = 0
   date = datetime.datetime.utcnow()
-  mas = {}
+  mas, masfal = {}, {}
   all_hearts = {'k':'❤️', 'o':'🧡', 'j':'💛', 'z':'💚', 'g':'💙'}
   bal_case = {'k':'7', 'o':'6', 'j':'5', 'z':'4', 'g':'3'}
   cost = {'k':'7 валентинок', 'o':'6 валентинок', 'j':'5 валентинок', 'z':'4 валентинки', 'g':'3 валентинки'}
@@ -38,7 +38,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-  global k, date, mas, all_hearts, kitty, cost, bal_case, colors
+  global k, date, mas, all_hearts, kitty, cost, bal_case, colors, masfal, id_channel_event
   id_channel_event = 678657683246809152
   if message.channel.id == id_channel_event:
     k += 1
@@ -49,6 +49,14 @@ async def on_message(message):
         my_feb.insert_one({'id':message.author.id, 'k':0, 'o':0, 'j':0, 'z':0, 'g':0, 'bal':0})
       my_feb.update_one({"id":message.author.id}, {"$inc": {temp: 1, 'bal':int(bal_case.get(temp))}})
       await message.channel.send(embed=discord.Embed(colour=0xfc71d4, description=f'{all_hearts.get(temp)} {message.author.mention} успешно забрал сидечко {kitty[random.randint(1,19)]}\nТеперь его баланс пополнился на {cost.get(temp)} {kitty[random.randint(1,19)]}'))
+      
+    temp = masfal.get(str(message.content))
+    if not temp is None:
+      masfal.pop(str(message.content))
+      if [i for i in my_feb.find({'id':message.author.id})] == []:
+        my_feb.insert_one({'id':message.author.id, 'k':0, 'o':0, 'j':0, 'z':0, 'g':0, 'bal':0})
+      my_feb.update_one({"id":message.author.id}, {"$inc": {temp: -1, 'bal':int(bal_case.get(temp))*-1}})
+      await message.channel.send(embed=discord.Embed(colour=0x000001, description=f'<:black_heart:807219883766710293> {message.author.mention} попался на фальшивую капчу <:Helen_PMS:806879093261336586>\nТеперь его баланс уменьшился на {cost.get(temp)} <:Helen_PMS:806879093261336586> <:Helen_PMS:806879093261336586> <:Helen_PMS:806879093261336586>\n෴<:black_heart:807219883766710293>෴<:black_heart:807219883766710293>෴<:black_heart:807219883766710293>෴<:black_heart:807219883766710293>෴<:black_heart:807219883766710293>෴\n─═ڿڰۣڿ☻ڿڰۣڿ═─<:black_heart:807219883766710293>─═ڿڰۣڿ☻ڿڰۣڿ═─\n෴<:black_heart:807219883766710293>෴<:black_heart:807219883766710293>෴<:black_heart:807219883766710293>෴<:black_heart:807219883766710293>෴<:black_heart:807219883766710293>෴').set_thumbnail(url='https://media.discordapp.net/attachments/791799591434584074/807219403259248690/1.png'))
       
   if k >= 152 or str(datetime.datetime.utcnow()-date).split('.')[0]>='0:30:00':
     if k >= 152:
@@ -84,12 +92,12 @@ async def inv(message):
   if [i for i in my_feb.find({'id':message.author.id})] == []:
     my_feb.insert_one({'id':message.author.id, 'k':0, 'o':0, 'j':0, 'z':0, 'g':0, 'bal':0})
   a = my_feb.find({"id":message.author.id})[0]
-  k = f'0{a.get("k")}' if a.get("k")<=9 else a.get("k")
-  o = f'0{a.get("o")}' if a.get("o")<=9 else a.get("o")
-  j = f'0{a.get("j")}' if a.get("j")<=9 else a.get("j")
-  z = f'0{a.get("z")}' if a.get("z")<=9 else a.get("z")
-  g = f'0{a.get("g")}' if a.get("g")<=9 else a.get("g")
-  embed = discord.Embed(colour=0xfc71d4, timestamp=datetime.datetime.utcnow(), title=f'Инвентарь сидечек {message.author.name}', description=f'❤️ — `{k}`   ─▄█▀█▄──▄███▄─\n🧡 — `{o}`   ▐█░██████████▌\n💛 — `{j}`   ─██▒█████████─\n💚 — `{z}`   ──▀████████▀──\n💙 — `{g}`   ─────▀██▀─────\nВалентинок всего: `{a.get("bal")}`')
+  k = a.get("k")
+  o = a.get("o")
+  j = a.get("j")
+  z = a.get("z")
+  g = a.get("g")
+  embed = discord.Embed(colour=0xfc71d4, timestamp=datetime.datetime.utcnow(), title=f'Инвентарь сидечек {message.author.name}', description=f'─▄█▀█▄──▄███▄─   ❤️ — `{k}`\n▐█░██████████▌   🧡 — `{o}`\n─██▒█████████─   💛 — `{j}`\n──▀████████▀──   💚 — `{z}`\n─────▀██▀─────   💙 — `{g}`\nВалентинок всего: `{a.get("bal")}`')
   embed.set_thumbnail(url=message.author.avatar_url)
   await message.channel.send(embed=embed)
   
@@ -128,5 +136,32 @@ async def i(message, *, kogo=None):
     my_feb2.delete_one({"id":message.author.id})
     my_feb2.insert_one({"id":message.author.id, "kogo":kogo})
     await message.channel.send(embed=discord.Embed(colour=0xfc71d4, description='**Вторая половинка успешно указана <:super:774247425539964959>\nТеперь её можно будет увидеть в карточке `K.info` <:fox:610352379748941824>**'))
+
+@client.command()
+async def fal(message):
+  global masfal, id_channel_event
+  if message.author.id in admins:
+    rand = random.randint(1,100)
+    if rand<=5:
+      kapcha = random.randint(1000000,9999999)
+      flag = 'k'
+    elif rand>5 and rand<=20:
+      kapcha = random.randint(100000,999999)
+      flag = 'o'
+    elif rand>20 and rand<=40:
+      kapcha = random.randint(10000,99999)
+      flag = 'j'
+    elif rand>40 and rand<=65:
+      kapcha = random.randint(1000,9999)
+      flag = 'z'
+    elif rand>65:
+      kapcha = random.randint(100,999)
+      flag = 'g'
+    masfal[f'{kapcha}'] = flag
+    response = Image.open(io.BytesIO(requests.get('https://media.discordapp.net/attachments/804450569736683580/804481836750471168/review.png', stream = True).content))
+    idraw = ImageDraw.Draw(response)
+    idraw.text((0 , 0), f'{kapcha}', colors.get(flag), font = ImageFont.truetype(r'./Gothic.ttf', size = 50))
+    response.save('14feb.png')
+    await client.get_channel(id_channel_event).send(content=f'Появилось {all_hearts.get(flag)} сидечко, стоимостью {cost.get(flag)} <:KannaWave:630856439921115162>\nСкорее вводи капчу, чтобы забрать его первым <:whoop:758212790153642024>', file = discord.File(fp = '14feb.png'))
 
 client.run(tt)
