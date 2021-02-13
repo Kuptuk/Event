@@ -36,7 +36,7 @@ async def on_ready():
   kitty = ['<a:z_kitty:750259811211542529>', '<:kitty_happy:794203420843442177>', '<a:z_HyperNeko:749672679522566146>', '<a:z_bongocat:749673203659571240>', '<a:Nefik22:802488380880322560>', '<:fox:610352379748941824>', '<:KannaWave:630856439921115162>', '<:helen_surveillance:786284424210939905>', '<:Helen22:700222377694330940>', '<:hehe:758212651464523806>', '<:ops:798301138633359400>', '<a:remspin:749672740021338213>', '<a:Rainbow_Weeb:749672953586647200>', '<:RemVV:774246427500478496>', '<a:z_funnyhelen2:758212956332490782>', '<a:funnyhelen1:758212978570297395>', '<a:funnyhelen3:758212859464908810>', '<:excuseme:610352380885860382>', '<:Angelina:792721358274035722>', '<:whoop:758212790153642024>']
   await client.get_channel(791799591434584074).send('```css\n[Данные обновлены, бот перезапущен].```')
 
-@client.event
+"""@client.event
 async def on_message(message):
   global k, date, mas, all_hearts, kitty, cost, bal_case, colors, masfal, id_channel_event
   id_channel_event = 678657683246809152
@@ -85,7 +85,7 @@ async def on_message(message):
     idraw.text((0 , 0), f'{kapcha}', colors.get(flag), font = ImageFont.truetype(r'./Gothic.ttf', size = 50))
     response.save('14feb.png')
     await client.get_channel(id_channel_event).send(content=f'Появилось {all_hearts.get(flag)} сидечко, стоимостью {cost.get(flag)} <:KannaWave:630856439921115162>\nСкорее вводи капчу, чтобы забрать его первым <:whoop:758212790153642024>', file = discord.File(fp = '14feb.png'))
-  await client.process_commands(message)
+  await client.process_commands(message)"""
   
 @client.command()
 async def inv(message):
