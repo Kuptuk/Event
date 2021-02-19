@@ -10,7 +10,7 @@ from PIL import Image, ImageFilter, ImageDraw, ImageFont
 import requests
 import io
 
-client = commands.Bot(command_prefix = 'secret', intents = discord.Intents.all())
+client = commands.Bot(command_prefix = 'K.', intents = discord.Intents.all())
 client.remove_command('help')
 
 mm = os.environ.get("Mongo")
@@ -22,63 +22,8 @@ my_feb = my_client.feb.feb
 my_feb2 = my_client.feb.feb2
 
 admins = [562561140786331650,414119169504575509,529044574660853761]
-
+ 
 @client.event
-async def on_ready():
-  msg = await client.get_channel(742757799645413378).history(limit=200).flatten()
-  b = []
-  for i in msg:
-      a = i.content.split('https://discord.gg')
-      b.append('https://discord.gg' + a[-1])
-  await client.get_channel(690827050033872937).purge(limit=10)
-  await client.get_channel(690827050033872937).send('https://discord.gg/nKPdC9V')
-  global d
-  global dk
-  global kolpub
-  global date_pms
-  date_pms = time.time() - 180
-  a = client.get_guild(604636579545219072).categories
-  idd = [747813531495301161, 642102626070036500, 747807222247063642, 642085815597400065, 642104779270782986]
-  c, k, d, dk = [], [], {}, {}
-  kolpub = 0
-  
-  #for cards_badges
-  global msgbots; global bag; global medal22; global souz; global help; global rm22; global ngl; global att; global ideas; global bang; global msgotz; global candys; global heart; global msgs
-  msgbots = await client.get_channel(764191031318937674).fetch_message(785189856988627004); msgbots = msgbots.content
-  bag = await client.get_channel(764191031318937674).fetch_message(807351505455022160); bag = bag.content
-  medal22 = await client.get_channel(764191031318937674).fetch_message(788848844980092989); medal22 = medal22.content
-  souz = await client.get_channel(764191031318937674).fetch_message(793762809396985866); souz = souz.content
-  help = await client.get_channel(764191031318937674).fetch_message(799910635206868992); help = help.content
-  rm22 = await client.get_channel(764191031318937674).fetch_message(812211556317921290); rm22 = rm22.content
-  ngl = await client.get_channel(764191031318937674).fetch_message(787339282951569420); ngl = ngl.content
-  att = await client.get_channel(764191031318937674).fetch_message(807351517581017099); att = att.content
-  ideas = await client.get_channel(764191031318937674).fetch_message(785203816785903667); ideas = ideas.content
-  bang = await client.get_channel(764191031318937674).fetch_message(786738663433437244); bang = bang.content
-  msgotz = await client.get_channel(764191031318937674).fetch_message(782330900746076202); msgotz = msgotz.content
-  candys = await client.get_channel(764191031318937674).fetch_message(790310798895480833); candys = candys.content
-  heart = await client.get_channel(764191031318937674).fetch_message(810449422328004628); heart = heart.content
-  msgs = await client.get_channel(764191031318937674).fetch_message(764191228933046361); msgs = msgs.content
-  
-  #for cards_img
-  global crown; global dev; global bag22; global medal; global allia; global help22; global rm; global ngl2; global att22; global id22; global bg22; global cotz; global candy; global heart22
-  crown = Image.open(io.BytesIO(requests.get('https://media.discordapp.net/attachments/689800301468713106/784811138671575121/owner.png', stream = True).content)).convert('RGBA').resize((37, 37), Image.ANTIALIAS)
-  dev = Image.open(io.BytesIO(requests.get('https://media.discordapp.net/attachments/689800301468713106/785183136362659880/developer.png', stream = True).content)).convert('RGBA').resize((37, 37), Image.ANTIALIAS)
-  bag22 = Image.open(io.BytesIO(requests.get('https://media.discordapp.net/attachments/689800301468713106/807343608868110406/review.png', stream = True).content)).convert('RGBA')
-  medal = Image.open(io.BytesIO(requests.get('https://media.discordapp.net/attachments/689800301468713106/788847715420209222/i_dont_know_what_is_it_say_plz.png', stream = True).content)).convert('RGBA').resize((37, 37), Image.ANTIALIAS)
-  allia = Image.open(io.BytesIO(requests.get('https://media.discordapp.net/attachments/689800301468713106/807310152801845358/-3.png', stream = True).content)).convert('RGBA')
-  help22 = Image.open(io.BytesIO(requests.get('https://media.discordapp.net/attachments/689800301468713106/799910232079466537/helper_1.png', stream = True).content)).convert('RGBA')
-  rm = Image.open(io.BytesIO(requests.get('https://media.discordapp.net/attachments/689800301468713106/796115970003173436/rm.png', stream = True).content)).convert('RGBA')
-  ngl2 = Image.open(io.BytesIO(requests.get('https://media.discordapp.net/attachments/689800301468713106/787359332891230238/1.png', stream = True).content)).convert('RGBA').resize((37, 37), Image.ANTIALIAS)
-  att22 = Image.open(io.BytesIO(requests.get('https://media.discordapp.net/attachments/689800301468713106/807346321487953970/review.png', stream = True).content)).convert('RGBA')
-  id22 = Image.open(io.BytesIO(requests.get('https://media.discordapp.net/attachments/689800301468713106/799910224001106000/puzzle.png', stream = True).content)).convert('RGBA')
-  bg22 = Image.open(io.BytesIO(requests.get('https://media.discordapp.net/attachments/689800301468713106/797119556178935848/rm.png', stream = True).content)).convert('RGBA')
-  cotz = Image.open(io.BytesIO(requests.get('https://media.discordapp.net/attachments/689800301468713106/799910237448175626/review.png', stream = True).content)).convert('RGBA')
-  candy = Image.open(io.BytesIO(requests.get('https://media.discordapp.net/attachments/689800301468713106/797119577951436810/rm.png', stream = True).content)).convert('RGBA')
-  heart22 = Image.open(io.BytesIO(requests.get('https://media.discordapp.net/attachments/689800301468713106/806296162889891890/review.png', stream = True).content)).convert('RGBA')
-
-  #await client.get_channel(811944233078226974).send(embed=discord.Embed(description='```md\n#Данные обновлены, бот перезапущен.```'))
-
-"""@client.event
 async def on_ready():
   global k, date, mas, all_hearts, kitty, cost, bal_case, colors, masfal
   k = 0
@@ -89,7 +34,7 @@ async def on_ready():
   cost = {'k':'7 валентинок', 'o':'6 валентинок', 'j':'5 валентинок', 'z':'4 валентинки', 'g':'3 валентинки'}
   colors = {'k':(217, 51, 65), 'o':(247, 142, 17), 'j':(254, 202, 93), 'z':(170, 142, 214), 'g':(94, 172, 236)}
   kitty = ['<a:z_kitty:750259811211542529>', '<:kitty_happy:794203420843442177>', '<a:z_HyperNeko:749672679522566146>', '<a:z_bongocat:749673203659571240>', '<a:Nefik22:802488380880322560>', '<:fox:610352379748941824>', '<:KannaWave:630856439921115162>', '<:helen_surveillance:786284424210939905>', '<:Helen22:700222377694330940>', '<:hehe:758212651464523806>', '<:ops:798301138633359400>', '<a:remspin:749672740021338213>', '<a:Rainbow_Weeb:749672953586647200>', '<:RemVV:774246427500478496>', '<a:z_funnyhelen2:758212956332490782>', '<a:funnyhelen1:758212978570297395>', '<a:funnyhelen3:758212859464908810>', '<:excuseme:610352380885860382>', '<:Angelina:792721358274035722>', '<:whoop:758212790153642024>']
-  await client.get_channel(791799591434584074).send('```css\n[Данные обновлены, бот перезапущен].```')"""
+  await client.get_channel(791799591434584074).send('```css\n[Данные обновлены, бот перезапущен].```')
 
 """@client.event
 async def on_message(message):
